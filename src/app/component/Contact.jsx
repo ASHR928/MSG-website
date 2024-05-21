@@ -76,7 +76,7 @@ export default function Contact() {
             <a href="" className="hover:shadow-2xl ">
               <Image
                 src="/assets/icons/fb.svg"
-                alt="instagram"
+                alt="facebook"
                 width={40}
                 height={40}
               />
@@ -84,7 +84,7 @@ export default function Contact() {
             <a href="">
               <Image
                 src="/assets/icons/linkedin.svg"
-                alt="instagram"
+                alt="linkedin"
                 width={40}
                 height={40}
               />
