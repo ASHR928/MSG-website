@@ -2,8 +2,8 @@ export default function About() {
   return (
     <section className="flex flex-col items-center justify-center w-full bg-primary-darkBlue px-4 mt-4">
       <div
-        className="flex flex-col items-center justify-center w-full bg-cover bg-center bg-no-repeat p-6 rounded-xl  shadow-lg shadow-primary-shadowPurple   "
-        style={{ backgroundImage: "url('/assets/about-bg.svg')" }}
+        className="flex flex-col items-center justify-center w-full bg-cover bg-no-repeat p-6 rounded-2xl  shadow-lg shadow-primary-shadowPurple   "
+        style={{ backgroundImage: "url('/assets/about-bg.png')" }}
       >
         <div className="flex flex-row items-start justify-center w-full gap-6 ">
           <div className="flex flex-col items-center justify-start w-1/5 h-[40vh] border-r-2 border-primary-darkBlue">
