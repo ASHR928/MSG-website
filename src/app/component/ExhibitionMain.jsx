@@ -1,0 +1,79 @@
+"use client";
+import Image from "next/image";
+import { useState } from "react";
+import { exhibitionData } from "../utils/constant";
+
+export default function ExhibitionMain() {
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [visibleItems, setVisibleItems] = useState(4);
+  const [showMore, setShowMore] = useState(false);
+
+  const filteredData = exhibitionData.filter(
+    (item) => item.category === selectedCategory
+  );
+
+  const handleShowMore = () => {
+    if (showMore) {
+      setVisibleItems(filteredData.length);
+      setShowMore(false);
+    } else {
+      setVisibleItems(4);
+      setShowMore(true);
+    }
+  };
+
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(category);
+  };
+
+  return (
+    <div className="flex flex-col items-center justify-center gap-20 bg-primary-darkBlue w-full pt-10 pb-32 ">
+      <div className="relative flex items-center justify-center w-full">
+        <div className="absolute right-36 top-1/2 transform -translate-y-1/2 w-1/5 h-[1px] bg-white"></div>
+        <h1 className="text-5xl text-primary-lightPurple tracking-normal text-center z-10 px-4">
+          Current Exhibition
+        </h1>
+      </div>
+      <div className="flex flex-col items-center justify-center relative">
+        <div className="flex flex-row items-center justify-center gap-24 relative px-4">
+          {["all", "landscape", "whimsical", "figures"].map((category) => (
+            <button
+              key={category}
+              className={`relative text-xl text-primary-lightPurple font-mono tracking-wide text-center z-10 px-4 uppercase `}
+              onClick={() => handleCategoryClick(category)}
+            >
+              {category.charAt(0).toUpperCase() + category.slice(1)}
+              {selectedCategory === category && (
+                <div className="absolute bottom-[-10px] left-0 w-full h-[2px] bg-white"></div>
+              )}
+            </button>
+          ))}
+        </div>
+        <div className="absolute bottom-[-10px] left-0 w-full h-[1.5px] bg-gray-500"></div>
+      </div>
+      <div className="grid grid-cols-4 gap-8">
+        {filteredData.slice(0, visibleItems).map((item, index) => (
+          <div key={index} className="relative group">
+            <Image src={item.src} alt="exhibition" width={280} height={280} />
+            <div className="absolute inset-0 flex flex-col gap-6 items-center justify-center bg-black bg-opacity-50 text-primary-purple opacity-0 group-hover:opacity-100 group-hover:backdrop-blur-sm transition-opacity duration-300 ease-in-out">
+              <div className="flex flex-col gap-1 items-center justify-center text-center">
+                <p className="text-xl">{item.brief}</p>
+                <h3 className="text-4xl font-bold">{item.title}</h3>
+              </div>
+              <p className="text-2xl font-semibold">₹ {item.price}/-</p>
+            </div>
+          </div>
+        ))}
+      </div>
+      <button
+        className={`text-xl rounded-full bg-gradient-to-r from-[#E9DEFF] from-[2%] to-[#9747FF]  text-primary-lightPurple font-bold tracking-wide text-center z-10 px-6 py-2 uppercase mt-4 hover:shadow-lg ${
+          filteredData.length <= 4 ? "cursor-not-allowed" : "cursor-pointer"
+        }`}
+        onClick={handleShowMore}
+        disabled={filteredData.length <= 4}
+      >
+        {showMore ? "Show More" : "Show Less"}
+      </button>
+    </div>
+  );
+}

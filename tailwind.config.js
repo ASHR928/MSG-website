@@ -35,6 +35,8 @@ module.exports = {
           darkBlue: "#050629",
           lightRed: "#FB665A",
           shadowPurple: "#947ADE",
+          darkPurple: "#9165C7",
+          darkerBlue: "#2E1B86",
         },
       },
       backgroundImage: {
