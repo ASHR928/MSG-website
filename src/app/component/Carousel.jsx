@@ -15,7 +15,7 @@ export default function Carousel() {
   };
 
   return (
-    <div className="w-full min-h-screen">
+    <div className="w-full h-full md:min-h-screen">
       <Slider {...settings}>
         <div>
           <Hero />

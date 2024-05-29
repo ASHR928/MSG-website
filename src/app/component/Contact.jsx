@@ -38,41 +38,41 @@ export default function Contact() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center gap-20 bg-primary-darkBlue w-full py-10">
+    <div className="flex flex-col items-center justify-center gap-10 sm:gap-20 bg-primary-darkBlue w-full py-4 sm:py-10">
       <div className="relative flex items-center justify-center w-full">
-        <div className="absolute right-72 top-1/2 transform -translate-y-1/2 w-1/5 h-[1px] bg-white"></div>
-        <h1 className="text-4xl text-primary-lightPurple tracking-wide text-center z-10 px-4">
+        <div className="absolute md:right-72 -bottom-2 md:top-1/2 transform -translate-y-1/2 w-2/5 sm:w-1/5 h-[1px] bg-white"></div>
+        <h1 className="text-2xl sm:text-4xl text-primary-lightPurple tracking-wide text-center z-10 px-4">
           Get in Touch
         </h1>
       </div>
-      <div className=" text-lg text-primary-lightPurple text-center px-5 leading-7 w-[80%] ">
+      <div className=" text-base sm:text-lg text-primary-lightPurple text-center px-2 sm:px-5 leading-7 w-[94%] sm:w-[80%] ">
         Let&apos;s embark on a journey of creativity together! Whether
         you&apos;re interested in exploring art workshops, commissioning a
         bespoke piece, or simply want to connect, I&apos;d love to hear from
         you.
       </div>
-      <div className=" rounded-2xl bg-primary-lightPurple p-4 mx-5 flex items-center justify-center gap-5">
-        <div className="flex flex-col items-start justify-start gap-4 p-6 my-4 z-10 bg-primary-purple rounded-2xl w-1/3 relative">
-          <h1 className="text-2xl text-black font-mono tracking-tighter">
+      <div className="rounded-2xl bg-primary-lightPurple p-2 sm:p-4 mx-4 sm:mx-5 flex flex-col md:flex-row items-center justify-center gap-2 md:gap-5">
+        <div className="flex flex-col items-start justify-start gap-4 p-3 sm:p-6 my-4 z-10 bg-primary-purple rounded-2xl md:w-1/3 relative">
+          <h1 className="text-xl sm:text-2xl text-black font-mono tracking-tighter">
             Contact Information
           </h1>
-          <p className="text-sm tracking-tight text-black font-mono">
+          <p className="text-xs sm:text-sm tracking-tight text-black font-mono">
             Let&apos;s turn your imagination into art - get in touch today!{" "}
           </p>
-          <div className="flex flex-col items-start justify-start m-4 p-5 gap-4 w-[70%]">
+          <div className="flex flex-col items-start justify-start m-4 p-3 sm:p-5 gap-2 sm:gap-4 w-[76%] sm:w-[70%]">
             <a
               href="tel:+91 9876543210"
-              className="text-base text-black font-mono hover:text-black/70 hover:underline"
+              className="text-sm sm:text-base text-black font-mono hover:text-black/70 hover:underline"
             >
               +91 9876543210
             </a>
-            <p className="text-base text-black font-mono ">
+            <p className="text-sm sm:text-base text-black font-mono ">
               {" "}
-              Musee Art Cafe, Nagal Road, Kathbangla, Near Sai Baba temple
-              Rajpur road, Dehradun. Uttarakhand 248001
+              MSK Creative Studio <br /> 9 Swastik Enclave, Sirmour Estate,
+              Rajendra Nagar, Dehradun, UK
             </p>
           </div>
-          <div className="flex flex-row items-start justify-start gap-4">
+          <div className="flex flex-row items-start justify-start gap-2 sm:gap-4">
             <a href="" className="hover:shadow-2xl ">
               <Image
                 src="/assets/icons/fb.svg"
@@ -108,16 +108,16 @@ export default function Contact() {
           </div>
         </div>
         <form
-          className="flex flex-col items-center justify-center gap-4 p-6 z-10 w-2/3"
+          className="flex flex-col items-center justify-center gap-2 sm:gap-4 p-3 sm:p-6 z-10 w-full md:w-2/3"
           onSubmit={handleSendMessage}
           ref={form}
         >
           <div className="flex flex-col w-full gap-4 text-black">
-            <div className="flex flex-row justify-between items-center gap-2 w-full">
-              <div className="flex flex-col gap-2 w-1/2 ">
+            <div className="flex flex-col sm:flex-row justify-between items-center gap-2 w-full">
+              <div className="flex flex-col gap-1 sm:gap-2 w-full sm:w-1/2">
                 <label
                   htmlFor="name"
-                  className="text-xl font-mono font-extrabold "
+                  className="text-base sm:text-xl font-mono font-semibold sm:font-extrabold "
                 >
                   Your Name
                 </label>
@@ -135,10 +135,10 @@ export default function Contact() {
                   }}
                 />
               </div>
-              <div className="flex flex-col gap-2 w-1/2">
+              <div className="flex flex-col gap-1 sm:gap-2 w-full sm:w-1/2">
                 <label
                   htmlFor="mail"
-                  className="text-xl font-mono font-extrabold "
+                  className="text-base sm:text-xl font-mono font-semibold sm:font-extrabold "
                 >
                   Mail address
                 </label>
@@ -158,10 +158,10 @@ export default function Contact() {
                 />
               </div>
             </div>
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-1 sm:gap-2">
               <label
                 htmlFor="subject"
-                className="text-xl font-mono font-extrabold"
+                className="text-base sm:text-xl font-mono font-semibold sm:font-extrabold"
               >
                 Subject
               </label>
@@ -179,10 +179,10 @@ export default function Contact() {
                 }}
               />
             </div>
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-1 sm:gap-2">
               <label
                 htmlFor="message"
-                className="text-xl font-mono font-extrabold "
+                className="text-base sm:text-xl font-mono font-semibold sm:font-extrabold"
               >
                 Message
               </label>
@@ -203,9 +203,9 @@ export default function Contact() {
               />
             </div>
           </div>
-          <div className="flex justify-start w-full mt-4">
+          <div className="flex justify-start w-full mt-2 sm:mt-4">
             <button
-              className="rounded-xl bg-transparent hover:bg-transparent text-primary-darkPurple border-2 border-primary-darkPurple font-purple tracking-tight  hover:shadow-2xl px-4 py-2 font-semibold text-lg"
+              className="rounded-xl bg-transparent hover:bg-transparent text-primary-darkPurple border-2 border-primary-darkPurple font-purple tracking-tight hover:shadow-2xl px-4 py-2 font-semibold text-lg"
               type="submit"
             >
               Send Message
