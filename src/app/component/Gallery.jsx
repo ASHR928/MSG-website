@@ -2,13 +2,29 @@
 import Image from "next/image";
 import Slider from "react-slick";
 import { galleryData } from "../utils/constant";
+import { useState, useEffect } from "react";
 
 export default function Gallery() {
+  const [slidesToShow, setSlidesToShow] = useState(2);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setSlidesToShow(window.innerWidth > 768 ? 3 : 2);
+    };
+
+    handleResize(); // Set initial value
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   const settings = {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: window.innerWidth > 768 ? 3 : 2,
+    slidesToShow: slidesToShow,
     slidesToScroll: 1,
     arrows: true,
   };
