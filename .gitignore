@@ -1,0 +1,40 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+MSG-website/node_modules
+MSG-website/.pnp
+MSG-website/.pnp.js
+MSG-website/.yarn/install-state.gz
+
+# testing
+MSG-website/coverage
+
+# next.js
+MSG-website/.next/
+MSG-website/out/
+
+# production
+MSG-website/build
+
+# misc
+MSG-website/.DS_Store
+MSG-website/*.pem
+
+# debug
+MSG-website/npm-debug.log*
+MSG-website/yarn-debug.log*
+MSG-website/yarn-error.log*
+
+# local env files
+MSG-website/.env*.local
+
+# vercel
+MSG-website/.vercel
+
+# typescript
+MSG-website/*.tsbuildinfo
+MSG-website/next-env.d.ts
+
+## Server files
+MSG-server/node_modules
+MSG-server/.env
