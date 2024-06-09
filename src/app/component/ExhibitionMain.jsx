@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { useState,useEffect } from "react";
 import { exhibitionData } from "../utils/constant";
-import { sanityFetch } from "@/sanity/client";
+import { sanityFetch } from "../../../sanity/lib/client";
 
 const ITEMS_QUERY = `*[_type == "item"]{
   _id,
@@ -19,9 +19,6 @@ export default function ExhibitionMain() {
   const [visibleItems, setVisibleItems] = useState(4);
   const [showMore, setShowMore] = useState(true);
 
-  const filteredData = exhibitionData.filter(
-    (item) => item.category === selectedCategory
-  );
   useEffect(() => {
     async function fetchData() {
       const data = await sanityFetch({ query: ITEMS_QUERY });
@@ -29,6 +26,11 @@ export default function ExhibitionMain() {
     }
     fetchData();
   }, []);
+  
+  const filteredData = exhibitionData.filter(
+    (items) => items.category === selectedCategory
+  );
+
 
   const handleShowMore = () => {
     if (showMore) {

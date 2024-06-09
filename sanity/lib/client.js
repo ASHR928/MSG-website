@@ -11,10 +11,15 @@ export const client = createClient({
 })
 
 export async function sanityFetch({ query, params = {}, tags }) {
-  return client.fetch(query, params, {
-    next: {
-      revalidate: process.env.NODE_ENV === 'development' ? 30 : 3600,
-      tags,
-    },
-  });
+  try {
+    return await client.fetch(query, params, {
+      next: {
+        revalidate: process.env.NODE_ENV === 'development' ? 30 : 3600,
+        tags,
+      },
+    });
+  } catch (error) {
+    console.error('Error fetching data from Sanity:', error);
+    throw error; // Re-throw the error to propagate it upwards
+  }
 }

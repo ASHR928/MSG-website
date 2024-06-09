@@ -10,6 +10,7 @@ import Contact from "./component/Contact";
 import Hero from "./component/Hero";
 import Exhibition from "./component/Exhibition";
 
+
 export default function Home() {
   const [isLargeScreen, setIsLargeScreen] = useState(false);
 
@@ -45,6 +46,8 @@ export default function Home() {
       <Awards />
       <Gallery />
       <Contact />
+      {/* <Login/> */}
+      
     </main>
   );
 }
