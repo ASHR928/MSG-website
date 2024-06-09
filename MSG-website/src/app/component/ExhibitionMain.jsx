@@ -1,7 +1,10 @@
 "use client";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState,useEffect } from "react";
 import { exhibitionData } from "../utils/constant";
+
+
+
 
 export default function ExhibitionMain() {
   const [items, setItems] = useState([]);
@@ -10,8 +13,9 @@ export default function ExhibitionMain() {
   const [showMore, setShowMore] = useState(true);
 
   const filteredData = exhibitionData.filter(
-    (item) => item.category === selectedCategory
+    (items) => items.category === selectedCategory
   );
+
 
   const handleShowMore = () => {
     if (showMore) {

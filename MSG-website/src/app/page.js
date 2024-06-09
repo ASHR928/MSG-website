@@ -18,7 +18,7 @@ export default function Home() {
       setIsLargeScreen(window.innerWidth > 640);
     };
 
-    handleResize(); // Set initial value
+    handleResize();
     window.addEventListener("resize", handleResize);
 
     return () => {
@@ -45,6 +45,7 @@ export default function Home() {
       <Awards />
       <Gallery />
       <Contact />
+      {/* <Login/> */}
     </main>
   );
 }
