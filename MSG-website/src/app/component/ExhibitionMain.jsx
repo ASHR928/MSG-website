@@ -1,25 +1,38 @@
 "use client";
 import Image from "next/image";
-import { useState,useEffect } from "react";
-import { exhibitionData } from "../utils/constant";
-
-
-
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function ExhibitionMain() {
-  const [items, setItems] = useState([]);
+  const [data, setData] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [visibleItems, setVisibleItems] = useState(4);
   const [showMore, setShowMore] = useState(true);
 
-  const filteredData = exhibitionData.filter(
-    (items) => items.category === selectedCategory
-  );
+  useEffect(() => {
+    fetchData();
+  }, []);
 
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:5000/api/v1/exhibition"
+      );
+      setData(response.data.exhibitions);
+    } catch (err) {
+      console.error("Error fetching data", err);
+    }
+  };
+
+  const filteredData = data.filter(
+    (item) =>
+      item.category.toLowerCase() === selectedCategory.toLowerCase() ||
+      selectedCategory === "all"
+  );
 
   const handleShowMore = () => {
     if (showMore) {
-      setVisibleItems(filteredData.length);
+      setVisibleItems(filteredData?.length);
       setShowMore(false);
     } else {
       setVisibleItems(4);
@@ -57,16 +70,23 @@ export default function ExhibitionMain() {
         <div className="absolute bottom-[-10px] left-0 w-full h-[1.5px] bg-gray-500"></div>
       </div>
       <div className="grid grid-cols-3 sm:grid-cols-4 gap-4 sm:gap-6 md:gap-8 mx-4 sm:mx-6 md:mx-0">
-        {filteredData.slice(0, visibleItems).map((item, index) => (
+        {filteredData?.slice(0, visibleItems)?.map((item, index) => (
           <div key={index} className="relative group">
-            <Image src={item.src} alt="exhibition" width={280} height={280} />
+            <Image
+              src={item?.image?.url}
+              alt="exhibition"
+              width={280}
+              height={280}
+            />
             <div className="absolute inset-0 flex flex-col gap-3 sm:gap-6 items-center justify-center bg-black bg-opacity-50 text-primary-purple opacity-0 group-hover:opacity-100 group-hover:backdrop-blur-sm transition-opacity duration-300 ease-in-out">
               <div className="flex flex-col gap-1 items-center justify-center text-center">
-                <p className="text-base sm:text-xl">{item.brief}</p>
-                <h3 className="text-2xl sm:text-4xl font-bold">{item.title}</h3>
+                <p className="text-base sm:text-xl">{item?.brief}</p>
+                <h3 className="text-2xl sm:text-4xl font-bold">
+                  {item?.title}
+                </h3>
               </div>
               <p className="text-lg sm:text-2xl font-semibold">
-                ₹ {item.price}/-
+                ₹ {item?.price}/-
               </p>
             </div>
           </div>
@@ -79,7 +99,7 @@ export default function ExhibitionMain() {
             : "cursor-pointer"
         }`}
         onClick={handleShowMore}
-        disabled={filteredData.length <= 4}
+        disabled={filteredData?.length <= 4}
       >
         {showMore ? "Show More" : "Show Less"}
       </button>

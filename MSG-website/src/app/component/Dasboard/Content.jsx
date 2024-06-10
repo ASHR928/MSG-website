@@ -156,8 +156,6 @@ const EditableTable = () => {
       console.log("No new image");
     }
 
-    console.log(newData.get("image"));
-
     try {
       const config = {
         headers: {
@@ -253,7 +251,6 @@ const EditableTable = () => {
                       onChange={handleChange}
                       size="small"
                     >
-                      <MenuItem value="all">All</MenuItem>
                       <MenuItem value="Whimsical">Whimsical</MenuItem>
                       <MenuItem value="Landscape">Landscape</MenuItem>
                       <MenuItem value="Figures">Figures</MenuItem>
@@ -330,9 +327,6 @@ const EditableTable = () => {
                   placeholder="Category"
                   size="small"
                 >
-                  <MenuItem value="all" defaultValue={true}>
-                    All
-                  </MenuItem>
                   <MenuItem value="Whimsical">Whimsical</MenuItem>
                   <MenuItem value="Landscape">Landscape</MenuItem>
                   <MenuItem value="Figures">Figures</MenuItem>
