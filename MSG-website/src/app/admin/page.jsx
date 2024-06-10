@@ -1,24 +1,51 @@
 "use client";
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+import axios from "axios";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = () => {
-    if (!email || !password) {
-      alert("Please enter both email and password.");
-      return;
-    }
+  const navigate = useRouter();
 
-    // Here you can handle the login logic, like sending the data to a server
-    console.log("Email:", email);
-    console.log("Password:", password);
+  const handleLogin = async () => {
+    try {
+      if (!email || !password) {
+        alert("Please enter both email and password.");
+        return;
+      }
+
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+
+      const { data } = await axios.post(
+        "http://localhost:5000/api/v1/user/login",
+        { email, password },
+        config
+      );
+
+      console.log(data);
+
+      if (data.success) {
+        navigate.push("/admin/Dashboard");
+        localStorage.setItem("userToken", data.token);
+      } else {
+        alert("Login unsuccessful! Please try again");
+        setEmail("");
+        setPassword("");
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
     <section className="flex overflow-hidden items-center justify-center h-screen py-10 bg-gray-100">
-      <div className="w-11/12 max-w-[500px] px-10 py-20 rounded-3xl bg-white border-2 border-gray-100">
+      <div className="w-11/12 max-w-[500px] px-10 py-20 rounded-3xl bg-white border-2 border-gray-100 text-black">
         <h1 className="text-5xl font-semibold text-black">Welcome Back</h1>
         <p className="font-medium text-lg text-gray-500 mt-4">
           Welcome Megha! Please enter your details.

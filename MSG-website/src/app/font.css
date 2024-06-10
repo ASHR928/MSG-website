@@ -1,0 +1,11 @@
+@font-face {
+    font-family: "CORINTHIA REGULAR";
+    src: url("../../public/assets/fonts/Corinthia-Regular.ttf");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "CORINTHIA REGULAR";
+    src: url("../../public/assets/fonts/Corinthia-Bold.ttf");
+    font-display: swap;
+}

@@ -65,7 +65,7 @@ exports.removeExhibition = async (req, res) => {
 
     await cloudinary.v2.uploader.destroy(exhibition.image.public_id);
 
-    await exhibition.remove();
+    await Exhibition.findByIdAndDelete(id);
 
     res.status(200).json({
       message: "Exhibition deleted successfully",

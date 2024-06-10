@@ -1,28 +1,29 @@
 const User = require("../models/userModel");
-const crypto = require("crypto");
 
 const sendToken = (user, statusCode, res) => {
   const token = user.getJwtToken();
 
   const options = {
     expires: new Date(
-      Date.now() + process.env.COOKIE_EXPIRES_TIME * 24 * 60 * 60 * 1000
+      Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000
     ),
     httpOnly: true,
   };
 
   res.status(statusCode).cookie("token", token, options).json({
     success: true,
-    token,
     user,
+    token,
   });
 };
 
 exports.registerUser = async (req, res) => {
-  const { username, email, password } = req.body;
+  const { name, email, password } = req.body;
+
+  console.log(req.body);
 
   try {
-    if (!username || !email || !password) {
+    if (!name || !email || !password) {
       return res.status(400).json({
         message: "Please enter all fields",
       });
@@ -37,7 +38,7 @@ exports.registerUser = async (req, res) => {
     }
 
     const user = await User.create({
-      username,
+      name,
       email,
       password,
     });
@@ -52,6 +53,7 @@ exports.registerUser = async (req, res) => {
 
 exports.loginUser = async (req, res) => {
   const { email, password } = req.body;
+  console.log(req.body);
 
   try {
     if (!email || !password) {

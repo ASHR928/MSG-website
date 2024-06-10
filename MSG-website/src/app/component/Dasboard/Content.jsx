@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from "react";
 import {
   Box,
   Table,
@@ -13,63 +13,173 @@ import {
   Button,
   TextField,
   IconButton,
-} from '@mui/material';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
-import SaveIcon from '@mui/icons-material/Save';
-import AddIcon from '@mui/icons-material/Add';
-
-const initialData = [
-  { id: 1, title: 'Item 1', brief: 'Brief 1', price: 10 },
-  { id: 2, title: 'Item 2', brief: 'Brief 2', price: 20 },
-];
+  MenuItem,
+} from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
+import SaveIcon from "@mui/icons-material/Save";
+import AddIcon from "@mui/icons-material/Add";
+import axios from "axios";
 
 const EditableTable = () => {
-    const [newPhoto, setNewPhoto] = useState(null);
-    const [formDataPhoto, setFormDataPhoto] = useState(null);
-  
-    const handleFileChange = (e, isNew = false) => {
-      if (isNew) {
-        setNewPhoto(e.target.files[0]);
-      } else {
-        setFormDataPhoto(e.target.files[0]);
+  const [data, setData] = useState([]);
+  const [editId, setEditId] = useState(null);
+  const [formData, setFormData] = useState({
+    title: "",
+    brief: "",
+    price: "",
+    category: "all",
+    image: null,
+  });
+  const [newRowData, setNewRowData] = useState({
+    title: "",
+    brief: "",
+    price: "",
+    category: "",
+    image: null,
+  });
+
+  const token = localStorage.getItem("userToken");
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:5000/api/v1/exhibition"
+      );
+      setData(response.data.exhibitions);
+    } catch (err) {
+      console.error("Error fetching data", err);
+    }
+  };
+
+  const handleFileChange = (e, isNew = false) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        if (isNew) {
+          setNewRowData({ ...newRowData, image: reader.result });
+        } else {
+          setFormData({ ...formData, image: reader.result });
+        }
       }
     };
-
-  const [data, setData] = useState(initialData);
-  const [editId, setEditId] = useState(null);
-  const [formData, setFormData] = useState({ title: '', brief: '', price: '' });
-  const [newRowData, setNewRowData] = useState({ title: '', brief: '', price: '' });
+    reader.readAsDataURL(file);
+  };
 
   const handleEdit = (id) => {
-    const item = data.find((row) => row.id === id);
+    const item = data.find((row) => row._id === id);
     setEditId(id);
-    setFormData({ title: item.title, brief: item.brief, price: item.price });
+    setFormData({
+      title: item.title,
+      brief: item.brief,
+      price: item.price,
+      category: item.category,
+      image: null,
+    });
   };
 
-  const handleSave = (id) => {
-    setData((prevData) =>
-      prevData.map((item) =>
-        item.id === id ? { ...item, ...formData } : item
-      )
-    );
-    setEditId(null);
-    setFormData({ title: '', brief: '', price: '' });
+  const handleSave = async (id) => {
+    const item = data.find((row) => row._id === id);
+    const updatedData = new FormData();
+    updatedData.append("title", formData.title);
+    updatedData.append("brief", formData.brief);
+    updatedData.append("price", formData.price);
+    updatedData.append("category", formData.category);
+    if (formData.image) {
+      updatedData.append("image", formData.image);
+    }
+
+    try {
+      const config = {
+        headers: {
+          Authorization: token,
+          "Content-Type": "multipart/form-data",
+        },
+      };
+
+      const response = await axios.put(
+        `http://localhost:5000/api/v1/exhibition/update/${id}`,
+        updatedData,
+        config
+      );
+      setData((prevData) =>
+        prevData.map((item) =>
+          item._id === id ? response.data.exhibition : item
+        )
+      );
+      setEditId(null);
+      setFormData({
+        title: "",
+        brief: "",
+        price: "",
+        category: "",
+        image: null,
+      });
+    } catch (err) {
+      console.error("Error saving data", err);
+    }
   };
 
-  const handleDelete = (id) => {
-    setData((prevData) => prevData.filter((item) => item.id !== id));
-  };
-
-  const handleAdd = () => {
-    const newItem = {
-      id: data.length ? data[data.length - 1].id + 1 : 1,
-      title: newRowData.title,
-      brief: newRowData.brief,
-      price: newRowData.price,
+  const handleDelete = async (id) => {
+    const config = {
+      headers: {
+        Authorization: token,
+      },
     };
-    setData([...data, newItem]);
-    setNewRowData({ title: '', brief: '', price: '' });
+
+    try {
+      await axios.delete(
+        `http://localhost:5000/api/v1/exhibition/remove/${id}`,
+        config
+      );
+      setData((prevData) => prevData.filter((item) => item._id !== id));
+    } catch (err) {
+      console.error("Error deleting data", err);
+    }
+  };
+
+  const handleAdd = async () => {
+    const newData = new FormData();
+    newData.append("title", newRowData.title);
+    newData.append("brief", newRowData.brief);
+    newData.append("price", newRowData.price);
+    newData.append("category", newRowData.category);
+    if (newRowData.image) {
+      newData.append("image", newRowData.image);
+    } else {
+      console.log("No new image");
+    }
+
+    console.log(newData.get("image"));
+
+    try {
+      const config = {
+        headers: {
+          Authorization: token,
+        },
+      };
+      const response = await axios.post(
+        "http://localhost:5000/api/v1/exhibition/add",
+        newData,
+        config
+      );
+      setData([...data, response.data.exhibition]);
+      setNewRowData({
+        title: "",
+        brief: "",
+        price: "",
+        category: "",
+        image: null,
+      });
+    } catch (err) {
+      console.error("Error adding data", err);
+    }
   };
 
   const handleChange = (e) => {
@@ -82,7 +192,7 @@ const EditableTable = () => {
   };
 
   return (
-   <Box sx={{ pt: 10,pl:5,pr:5 }}>
+    <Box sx={{ pt: 10, pl: 5, pr: 5 }}>
       <TableContainer component={Paper}>
         <Table size="small">
           <TableHead>
@@ -90,15 +200,16 @@ const EditableTable = () => {
               <TableCell>Title</TableCell>
               <TableCell>Brief</TableCell>
               <TableCell>Price</TableCell>
+              <TableCell>Category</TableCell>
               <TableCell>Photo</TableCell>
               <TableCell>Action</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {data.map((row) => (
-              <TableRow key={row.id}>
+              <TableRow key={row._id}>
                 <TableCell>
-                  {editId === row.id ? (
+                  {editId === row._id ? (
                     <TextField
                       name="title"
                       value={formData.title}
@@ -110,7 +221,7 @@ const EditableTable = () => {
                   )}
                 </TableCell>
                 <TableCell>
-                  {editId === row.id ? (
+                  {editId === row._id ? (
                     <TextField
                       name="brief"
                       value={formData.brief}
@@ -122,7 +233,7 @@ const EditableTable = () => {
                   )}
                 </TableCell>
                 <TableCell>
-                  {editId === row.id ? (
+                  {editId === row._id ? (
                     <TextField
                       name="price"
                       value={formData.price}
@@ -134,26 +245,47 @@ const EditableTable = () => {
                   )}
                 </TableCell>
                 <TableCell>
-                  {editId === row.id ? (
-                    <input
-                      type="file"
-                      onChange={(e) => handleFileChange(e)}
-                    />
+                  {editId === row._id ? (
+                    <TextField
+                      select
+                      name="category"
+                      value={formData.category}
+                      onChange={handleChange}
+                      size="small"
+                    >
+                      <MenuItem value="all">All</MenuItem>
+                      <MenuItem value="Whimsical">Whimsical</MenuItem>
+                      <MenuItem value="Landscape">Landscape</MenuItem>
+                      <MenuItem value="Figures">Figures</MenuItem>
+                    </TextField>
                   ) : (
-                    row.photo && <img src={URL.createObjectURL(row.photo)} alt="photo" width="50" />
+                    row.category
                   )}
                 </TableCell>
                 <TableCell>
-                  {editId === row.id ? (
-                    <IconButton onClick={() => handleSave(row.id)}>
+                  {editId === row._id ? (
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => handleFileChange(e)}
+                    />
+                  ) : (
+                    row.image && (
+                      <img src={row.image.url} alt="object" width="50" />
+                    )
+                  )}
+                </TableCell>
+                <TableCell>
+                  {editId === row._id ? (
+                    <IconButton onClick={() => handleSave(row._id)}>
                       <SaveIcon fontSize="small" />
                     </IconButton>
                   ) : (
                     <>
-                      <IconButton onClick={() => handleEdit(row.id)}>
+                      <IconButton onClick={() => handleEdit(row._id)}>
                         <EditIcon fontSize="small" />
                       </IconButton>
-                      <IconButton onClick={() => handleDelete(row.id)}>
+                      <IconButton onClick={() => handleDelete(row._id)}>
                         <DeleteIcon fontSize="small" />
                       </IconButton>
                     </>
@@ -188,6 +320,23 @@ const EditableTable = () => {
                   placeholder="Price"
                   size="small"
                 />
+              </TableCell>
+              <TableCell>
+                <TextField
+                  select
+                  name="category"
+                  value={newRowData.category}
+                  onChange={handleChange}
+                  placeholder="Category"
+                  size="small"
+                >
+                  <MenuItem value="all" defaultValue={true}>
+                    All
+                  </MenuItem>
+                  <MenuItem value="Whimsical">Whimsical</MenuItem>
+                  <MenuItem value="Landscape">Landscape</MenuItem>
+                  <MenuItem value="Figures">Figures</MenuItem>
+                </TextField>
               </TableCell>
               <TableCell>
                 <input

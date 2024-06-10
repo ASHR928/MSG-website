@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
 
 const userSchema = new mongoose.Schema({
-  username: {
+  name: {
     type: String,
     required: [true, "Please enter your username"],
     unique: true,
@@ -45,7 +45,7 @@ userSchema.methods.comparePassword = async function (enteredPassword) {
 
 userSchema.methods.getJwtToken = function () {
   return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
-    expiresIn: process.env.JWT_EXPIRES_TIME,
+    expiresIn: process.env.JWT_EXPIRE,
   });
 };
 
