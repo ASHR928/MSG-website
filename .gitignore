@@ -38,3 +38,7 @@ MSG-website/next-env.d.ts
 MSG-server/node_modules
 MSG-server/.env
 
+
+# Local file
+/notes.txt
+
