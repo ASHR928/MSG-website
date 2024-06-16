@@ -28,7 +28,7 @@ const Login = () => {
       };
 
       const { data } = await axios.post(
-        "https://msg-website-pa8k.onrender.com:5000/api/v1/user/login",
+        "https://msg-website-pa8k.onrender.com/api/v1/user/login",
         { email, password },
         config
       );
