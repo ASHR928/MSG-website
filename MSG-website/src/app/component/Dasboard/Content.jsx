@@ -24,6 +24,7 @@ import axios from "axios";
 const EditableTable = () => {
   const [data, setData] = useState([]);
   const [editId, setEditId] = useState(null);
+  const [isClient, setIsClient] = useState(false);
   const [formData, setFormData] = useState({
     title: "",
     brief: "",
@@ -39,7 +40,15 @@ const EditableTable = () => {
     image: null,
   });
 
-  const token = localStorage.getItem("userToken");
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  let token = null;
+
+  if (isClient) {
+    token = localStorage.getItem("userToken");
+  }
 
   useEffect(() => {
     fetchData();

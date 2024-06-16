@@ -1,11 +1,16 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const navigate = useRouter();
 
@@ -28,11 +33,11 @@ const Login = () => {
         config
       );
 
-      console.log(data);
-
       if (data.success) {
         navigate.push("/admin/Dashboard");
-        localStorage.setItem("userToken", data.token);
+        if (isClient) {
+          localStorage.setItem("userToken", data.token);
+        }
       } else {
         alert("Login unsuccessful! Please try again");
         setEmail("");
