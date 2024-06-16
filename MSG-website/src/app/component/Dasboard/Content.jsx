@@ -48,7 +48,7 @@ const EditableTable = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/v1/exhibition"
+        "https://msg-website-2.onrender.com/:5000/api/v1/exhibition"
       );
       setData(response.data.exhibitions);
     } catch (err) {
@@ -104,7 +104,7 @@ const EditableTable = () => {
       };
 
       const response = await axios.put(
-        `http://localhost:5000/api/v1/exhibition/update/${id}`,
+        `https://msg-website-2.onrender.com/:5000/api/v1/exhibition/update/${id}`,
         updatedData,
         config
       );
@@ -135,7 +135,7 @@ const EditableTable = () => {
 
     try {
       await axios.delete(
-        `http://localhost:5000/api/v1/exhibition/remove/${id}`,
+        `https://msg-website-2.onrender.com/:5000/api/v1/exhibition/remove/${id}`,
         config
       );
       setData((prevData) => prevData.filter((item) => item._id !== id));
@@ -163,7 +163,7 @@ const EditableTable = () => {
         },
       };
       const response = await axios.post(
-        "http://localhost:5000/api/v1/exhibition/add",
+        "https://msg-website-2.onrender.com/:5000/api/v1/exhibition/add",
         newData,
         config
       );

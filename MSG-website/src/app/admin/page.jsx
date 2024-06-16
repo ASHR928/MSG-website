@@ -23,7 +23,7 @@ const Login = () => {
       };
 
       const { data } = await axios.post(
-        "http://localhost:5000/api/v1/user/login",
+        "https://msg-website-2.onrender.com/:5000/api/v1/user/login",
         { email, password },
         config
       );

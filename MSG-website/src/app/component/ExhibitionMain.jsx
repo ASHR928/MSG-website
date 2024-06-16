@@ -16,7 +16,7 @@ export default function ExhibitionMain() {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/v1/exhibition"
+        "https://msg-website-2.onrender.com/:5000/api/v1/exhibition"
       );
       setData(response.data.exhibitions);
     } catch (err) {
