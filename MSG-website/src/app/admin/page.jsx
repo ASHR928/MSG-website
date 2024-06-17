@@ -40,9 +40,9 @@ const Login = () => {
         }
       } else {
         alert("Login unsuccessful! Please try again");
-        setEmail("");
-        setPassword("");
       }
+      setEmail("");
+      setPassword("");
     } catch (err) {
       console.log(err);
     }

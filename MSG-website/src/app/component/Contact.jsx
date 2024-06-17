@@ -40,12 +40,12 @@ export default function Contact() {
   return (
     <div className="flex flex-col items-center justify-center gap-10 sm:gap-20 bg-primary-darkBlue w-full py-4 sm:py-10">
       <div className="relative flex items-center justify-center w-full">
-        <div className="absolute md:right-72 -bottom-2 md:top-1/2 transform -translate-y-1/2 w-2/5 sm:w-1/5 h-[1px] bg-white"></div>
+        <div className="absolute md:left-64 -bottom-2 md:top-1/2 transform -translate-y-1/2 w-2/5 sm:w-1/5 h-0.5 bg-white"></div>
         <h1 className="text-2xl sm:text-4xl text-primary-lightPurple tracking-wide text-center z-10 px-4">
           Get in Touch
         </h1>
       </div>
-      <div className=" text-base sm:text-lg text-primary-lightPurple text-center px-2 sm:px-5 leading-7 w-[94%] sm:w-[80%] ">
+      <div className=" text-base sm:text-lg text-primary-lightPurple text-center px-2 sm:px-5 leading-7 w-[94%] sm:w-[80%] font-baloo400">
         Let&apos;s embark on a journey of creativity together! Whether
         you&apos;re interested in exploring art workshops, commissioning a
         bespoke piece, or simply want to connect, I&apos;d love to hear from
@@ -53,20 +53,20 @@ export default function Contact() {
       </div>
       <div className="rounded-2xl bg-primary-lightPurple p-2 sm:p-4 mx-4 sm:mx-5 flex flex-col md:flex-row items-center justify-center gap-2 md:gap-5">
         <div className="flex flex-col items-start justify-start gap-4 p-3 sm:p-6 my-4 z-10 bg-primary-purple rounded-2xl md:w-1/3 relative">
-          <h1 className="text-xl sm:text-2xl text-black font-mono tracking-tighter">
+          <h1 className="text-xl sm:text-2xl text-black font-baloo300 tracking-tighter">
             Contact Information
           </h1>
-          <p className="text-xs sm:text-sm tracking-tight text-black font-mono">
+          <p className="text-xs sm:text-sm tracking-tight text-black font-baloo300">
             Let&apos;s turn your imagination into art - get in touch today!{" "}
           </p>
           <div className="flex flex-col items-start justify-start m-4 p-3 sm:p-5 gap-2 sm:gap-4 w-[76%] sm:w-[70%]">
             <a
               href="tel:+91 9876543210"
-              className="text-sm sm:text-base text-black font-mono hover:text-black/70 hover:underline"
+              className="text-sm sm:text-base text-black font-baloo300 hover:text-black/70 hover:underline"
             >
               +91 9876543210
             </a>
-            <p className="text-sm sm:text-base text-black font-mono ">
+            <p className="text-sm sm:text-base text-black font-baloo300 ">
               {" "}
               MSK Creative Studio <br /> 9 Swastik Enclave, Sirmour Estate,
               Rajendra Nagar, Dehradun, UK
@@ -117,7 +117,7 @@ export default function Contact() {
               <div className="flex flex-col gap-1 sm:gap-2 w-full sm:w-1/2">
                 <label
                   htmlFor="name"
-                  className="text-base sm:text-xl font-mono font-semibold sm:font-extrabold "
+                  className="text-base sm:text-xl font-baloo300 font-semibold sm:font-extrabold "
                 >
                   Your Name
                 </label>
@@ -138,7 +138,7 @@ export default function Contact() {
               <div className="flex flex-col gap-1 sm:gap-2 w-full sm:w-1/2">
                 <label
                   htmlFor="mail"
-                  className="text-base sm:text-xl font-mono font-semibold sm:font-extrabold "
+                  className="text-base sm:text-xl font-baloo300 font-semibold sm:font-extrabold "
                 >
                   Mail address
                 </label>
@@ -161,7 +161,7 @@ export default function Contact() {
             <div className="flex flex-col gap-1 sm:gap-2">
               <label
                 htmlFor="subject"
-                className="text-base sm:text-xl font-mono font-semibold sm:font-extrabold"
+                className="text-base sm:text-xl font-baloo300 font-semibold sm:font-extrabold"
               >
                 Subject
               </label>
@@ -182,7 +182,7 @@ export default function Contact() {
             <div className="flex flex-col gap-1 sm:gap-2">
               <label
                 htmlFor="message"
-                className="text-base sm:text-xl font-mono font-semibold sm:font-extrabold"
+                className="text-base sm:text-xl font-baloo300 font-semibold sm:font-extrabold"
               >
                 Message
               </label>

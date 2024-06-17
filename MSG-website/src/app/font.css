@@ -9,3 +9,34 @@
     src: url("../../public/assets/fonts/Corinthia-Bold.ttf");
     font-display: swap;
 }
+
+@font-face {
+    font-family: "BALOO REGULAR";
+    src: url("../../public/assets/fonts/BalooPaaji2-Regular.ttf");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "BALOO BOLD";
+    src: url("../../public/assets/fonts/BalooPaaji2-Bold.ttf");
+    font-display: swap;
+}
+
+
+@font-face {
+    font-family: "BALOO SEMIBOLD";
+    src: url("../../public/assets/fonts/BalooPaaji2-SemiBold.ttf");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "BALOO MEDIUM";
+    src: url("../../public/assets/fonts/BalooPaaji2-Medium.ttf");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "BALOO EXTRABOLD";
+    src: url("../../public/assets/fonts/BalooPaaji2-ExtraBold.ttf");
+    font-display: swap;
+}

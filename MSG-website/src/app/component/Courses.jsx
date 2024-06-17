@@ -16,7 +16,7 @@ function Card({ title, img, content }) {
         </div>
       </div>
       <div className="flex flex-col items-center justify-center bg-primary-lightPurple rounded-ss-3xl rounded-b-none rounded-e-none transition-all duration-300 group-hover:rounded-br-3xl ">
-        <p className="text-black text-base sm:text-xl p-2 mx-3 sm:mx-6 my-2 sm:my-4 font-mono">
+        <p className="text-black text-base sm:text-xl p-2 mx-3 sm:mx-6 my-2 sm:my-4 font-baloo400">
           {title}
         </p>
         <div
@@ -24,7 +24,7 @@ function Card({ title, img, content }) {
             isHovered ? "h-auto" : "h-0"
           } overflow-hidden`}
         >
-          <p className="text-xs sm:text-sm font-mono font-semibold py-4 px-2">
+          <p className="text-xs sm:text-sm font-baloo300 font-semibold py-4 px-2">
             {content}
           </p>
         </div>

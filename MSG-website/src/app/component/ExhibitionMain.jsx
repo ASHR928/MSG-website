@@ -53,7 +53,7 @@ export default function ExhibitionMain() {
         </h1>
       </div>
       <div className="flex flex-col items-center justify-center relative">
-        <div className="flex flex-row items-center justify-center gap-2 sm:gap-12 md:gap-24 relative px-2 sm:px-4">
+        <div className="flex flex-row items-center justify-center gap-2 sm:gap-12 md:gap-24 relative px-2 sm:px-4 font-baloo300">
           {["all", "landscape", "whimsical", "figures"].map((category) => (
             <button
               key={category}

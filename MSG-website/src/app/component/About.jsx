@@ -17,14 +17,14 @@ export default function About() {
           </div>
           <div className="flex flex-col items-start justify-start sm:w-2/3 md:w-4/5 gap-3 sm:gap-6 ">
             <div className="flex flex-col gap-1 mx-2 sm:mx-4">
-              <h4 className="sm:text-xl text-primary-darkBlue uppercase font-mono sm:font-semibold">
+              <h4 className="sm:text-xl text-primary-darkBlue uppercase font-baloo300 sm:font-semibold">
                 Started
               </h4>
-              <p className="sm:text-xl text-primary-lightRed uppercase font-mono font-semibold sm:font-extrabold">
+              <p className="sm:text-xl text-primary-lightRed uppercase font-baloo300 font-semibold sm:font-extrabold">
                 February, 1999
               </p>
             </div>
-            <div className="flex flex-col items-start justify-start w-full  gap-2 sm:gap-5 font-mono tracking-tight sm:font-semibold">
+            <div className="flex flex-col items-start justify-start w-full  gap-2 sm:gap-5 font-baloo300 ">
               <p className="text-sm sm:text-base text-primary-darkBlue">
                 Megha is an adept artist known for her keen observation and
                 admiration of the world around her. With an emphasis on

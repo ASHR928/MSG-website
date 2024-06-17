@@ -49,6 +49,11 @@ module.exports = {
     fontFamily: {
       corinthia400: ["CORINTHIA REGULAR"],
       corinthia500: ["CORINTHIA BOLD"],
+      baloo300: ["BALOO MEDIUM"],
+      baloo400: ["BALOO REGULAR"],
+      baloo500: ["BALOO SEMIBOLD"],
+      baloo600: ["BALOO BOLD"],
+      baloo700: ["BALOO EXTRABOLD"],
     },
     fontSize: {
       xxs: ["11px", { lineHeight: "1rem" }],

@@ -34,7 +34,7 @@ export default function Exhibition() {
                   className="object-contain"
                 />
               </div>
-              <h1 className="text-xl sm:text-2xl md:text-3xl text-primary-purple tracking-wide sm:tracking-widest text-center ">
+              <h1 className="text-xl sm:text-2xl md:text-3xl text-primary-purple tracking-wide sm:tracking-widest text-center font-baloo300">
                 Shillong
               </h1>
             </div>
@@ -47,7 +47,7 @@ export default function Exhibition() {
                   className="object-contain"
                 />
               </div>
-              <h1 className="text-xl sm:text-2xl md:text-3xl text-primary-purple tracking-wide sm:tracking-widest text-center ">
+              <h1 className="text-xl sm:text-2xl md:text-3xl text-primary-purple tracking-wide sm:tracking-widest text-center font-baloo300">
                 Delhi
               </h1>
             </div>
@@ -60,7 +60,7 @@ export default function Exhibition() {
                   className="object-contain"
                 />
               </div>
-              <h1 className="text-xl sm:text-2xl md:text-3xl text-primary-purple tracking-wide sm:tracking-widest text-center ">
+              <h1 className="text-xl sm:text-2xl md:text-3xl text-primary-purple tracking-wide sm:tracking-widest text-center font-baloo300">
                 Noida
               </h1>
             </div>
@@ -75,7 +75,7 @@ export default function Exhibition() {
                   className="object-contain"
                 />
               </div>
-              <h1 className="text-xl sm:text-2xl md:text-3xl text-primary-purple tracking-wide sm:tracking-widest text-center ">
+              <h1 className="text-xl sm:text-2xl md:text-3xl text-primary-purple tracking-wide sm:tracking-widest text-center font-baloo300">
                 Malaysia
               </h1>
             </div>
@@ -88,7 +88,7 @@ export default function Exhibition() {
                   className="object-contain"
                 />
               </div>
-              <h1 className="text-xl sm:text-2xl md:text-3xl text-primary-purple tracking-wide sm:tracking-widest text-center ">
+              <h1 className="text-xl sm:text-2xl md:text-3xl text-primary-purple tracking-wide sm:tracking-widest text-center font-baloo300">
                 Dehradun
               </h1>
             </div>
@@ -101,7 +101,7 @@ export default function Exhibition() {
                   className="object-contain"
                 />
               </div>
-              <h1 className="text-xl sm:text-2xl md:text-3xl text-primary-purple tracking-wide sm:tracking-widest text-center ">
+              <h1 className="text-xl sm:text-2xl md:text-3xl text-primary-purple tracking-wide sm:tracking-widest text-center font-baloo300">
                 Bhopal
               </h1>
             </div>
@@ -114,7 +114,7 @@ export default function Exhibition() {
                   className="object-contain"
                 />
               </div>
-              <h1 className="text-xl sm:text-2xl md:text-3xl text-primary-purple tracking-wide sm:tracking-widest text-center ">
+              <h1 className="text-xl sm:text-2xl md:text-3xl text-primary-purple tracking-wide sm:tracking-widest text-center font-baloo300">
                 Haridwar
               </h1>
             </div>
