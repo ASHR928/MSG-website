@@ -8,7 +8,12 @@ const app = express();
 
 require("dotenv").config();
 
-const allowedOrigins = ["http://localhost:3000"];
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://msg-website.vercel.app",
+  "https://msg-website-kulmeet-singhs-projects.vercel.app/",
+  "https://msg-website-git-main-kulmeet-singhs-projects.vercel.app/",
+];
 
 app.use(
   cors({
